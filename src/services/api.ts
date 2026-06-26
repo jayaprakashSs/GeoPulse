@@ -10,7 +10,7 @@ export async function fetchLocations(url?: string): Promise<LocationPoint[]> {
   // Add a configurable artificial delay of 800ms to demonstrate the responsive loading skeletons.
   await new Promise((resolve) => setTimeout(resolve, 800));
 
-  const targetUrl = url || '/mock-data.json';
+  const targetUrl = url || 'mock-data.json';
 
   try {
     const response = await fetch(targetUrl);
@@ -20,12 +20,12 @@ export async function fetchLocations(url?: string): Promise<LocationPoint[]> {
     const data = await response.json();
     return data as LocationPoint[];
   } catch (error) {
-    console.warn(`Fetch to "${targetUrl}" failed. Attempting fallback to "/mock-data.json"...`, error);
+    console.warn(`Fetch to "${targetUrl}" failed. Attempting fallback to "mock-data.json"...`, error);
 
     // If we were trying a custom remote URL, fallback to local file
-    if (targetUrl !== '/mock-data.json') {
+    if (targetUrl !== 'mock-data.json') {
       try {
-        const fallbackResponse = await fetch('/mock-data.json');
+        const fallbackResponse = await fetch('mock-data.json');
         if (!fallbackResponse.ok) {
           throw new Error('Local fallback also failed');
         }
